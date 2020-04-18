@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoriesService } from '../stories.service';
 import { forkJoin } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-story-list',
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./story-list.component.scss']
 })
 export class StoryListComponent implements OnInit {
-
+  /** Stores list of stories */
   stories: Array<{ title: string, url: string, by: string, time: number, score: number }> = [];
 
   constructor(private storiesService: StoriesService, private router: ActivatedRoute) { }
@@ -27,6 +27,10 @@ export class StoryListComponent implements OnInit {
     });
   }
 
+  /**
+   * This method is used to fetch stories based on storyType
+   * @param storyType story type (new/top/best)
+   */
   fetchStories(storyType: string) {
     switch (storyType) {
       case 'new':
