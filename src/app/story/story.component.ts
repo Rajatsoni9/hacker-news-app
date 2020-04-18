@@ -6,13 +6,10 @@ import { Story } from '../app.interface';
   templateUrl: './story.component.html',
   styleUrls: ['./story.component.scss']
 })
-export class StoryComponent implements OnInit {
+export class StoryComponent {
   @Input() story: Story;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   openLink(url: string) {
     if (url) {
