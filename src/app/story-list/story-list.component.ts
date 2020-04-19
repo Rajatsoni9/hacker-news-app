@@ -15,14 +15,16 @@ export class StoryListComponent implements OnInit {
   constructor(private storiesService: StoriesService, private router: ActivatedRoute) { }
 
   ngOnInit() {
-    const storyType = this.router.snapshot.paramMap.get('type');
-    this.fetchStories(storyType).then((storyList: number[]) => {
-      const storiesList = [];
-      for (let i = 0; i < 10; i++) {
-        storiesList.push(this.storiesService.fetchStory(storyList[i]));
-      }
-      forkJoin(storiesList).subscribe((stories) => {
-        this.stories = stories;
+    this.router.paramMap.subscribe((params) => {
+      const storyType = params.get('type');
+      this.fetchStories(storyType).then((storyList: number[]) => {
+        const storiesList = [];
+        for (let i = 0; i < 10; i++) {
+          storiesList.push(this.storiesService.fetchStory(storyList[i]));
+        }
+        forkJoin(storiesList).subscribe((stories) => {
+          this.stories = stories;
+        });
       });
     });
   }

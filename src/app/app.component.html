@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span class="title">HackerNews</span>
-    <a href="stories/best" mat-button>Best</a>
-    <a href="stories/top" mat-button>Top</a>
-    <a href="stories/new" mat-button>New</a>
+      <a routerLink="stories/best" routerLinkActive="active" mat-button>Best</a>
+      <a routerLink="stories/top" routerLinkActive="active" mat-button>Top</a>
+      <a routerLink="stories/new" routerLinkActive="active" mat-button>New</a>
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
