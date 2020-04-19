@@ -3,7 +3,7 @@
       <mat-card-title>{{ story?.title }}</mat-card-title>
       <mat-card-subtitle
         >{{ story?.score }} points by
-        <mat-chip>{{ story?.by }}</mat-chip></mat-card-subtitle
+        <span class="author">{{ story?.by }}</span></mat-card-subtitle
       >
     <mat-card-subtitle>({{ story?.url | domain }})</mat-card-subtitle>
   </mat-card-header>
