@@ -7,10 +7,19 @@ mat-toolbar {
     }
     a {
         height: 100%;
-        line-height: 4rem;
+        display: flex;
+        align-items: center;
         &.active {
             background: rgba(0, 0, 0, 0.18);
             border-radius: 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    mat-toolbar{
+        .title {
+            padding: 0;
         }
     }
 }
