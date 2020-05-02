@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./story-list.component.scss']
 })
 export class StoryListComponent implements OnInit {
+  /** True if stories are loading */
+  loading: boolean;
   /** Stores list of stories */
   stories: Array<{ title: string, url: string, by: string, time: number, score: number }> = [];
 
@@ -16,6 +18,7 @@ export class StoryListComponent implements OnInit {
 
   ngOnInit() {
     this.router.paramMap.subscribe((params) => {
+      this.loading = true;
       const storyType: string = params.get('type');
       this.storiesService.fetchStoriesByType(storyType).then((storyList: number[]) => {
         const storiesList = [];
@@ -24,6 +27,7 @@ export class StoryListComponent implements OnInit {
         }
         forkJoin(storiesList).subscribe((stories) => {
           this.stories = stories;
+          this.loading = false;
         });
       });
     });

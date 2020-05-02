@@ -1,3 +1,13 @@
 .stories-list {
     padding: 4rem 1rem 1rem 1rem;
 }
+
+mat-progress-bar {
+    top: 64px;
+}
+
+@media only screen and (max-width: 599px) {
+    mat-progress-bar {
+        top: 56px;
+    }
+}

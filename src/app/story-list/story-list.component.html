@@ -1,3 +1,4 @@
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="loading"></mat-progress-bar>
 <div class="stories-list">
   <ng-container *ngFor="let story of stories">
     <app-story [story]="story"></app-story>
