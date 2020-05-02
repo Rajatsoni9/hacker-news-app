@@ -16,8 +16,8 @@ export class StoryListComponent implements OnInit {
 
   ngOnInit() {
     this.router.paramMap.subscribe((params) => {
-      const storyType = params.get('type');
-      this.fetchStories(storyType).then((storyList: number[]) => {
+      const storyType: string = params.get('type');
+      this.storiesService.fetchStoriesByType(storyType).then((storyList: number[]) => {
         const storiesList = [];
         for (let i = 0; i < 10; i++) {
           storiesList.push(this.storiesService.fetchStory(storyList[i]));
@@ -27,21 +27,6 @@ export class StoryListComponent implements OnInit {
         });
       });
     });
-  }
-
-  /**
-   * This method is used to fetch stories based on storyType
-   * @param storyType story type (new/top/best)
-   */
-  fetchStories(storyType: string) {
-    switch (storyType) {
-      case 'new':
-        return this.storiesService.fetchNewStories();
-      case 'top':
-        return this.storiesService.fetchTopStories();
-      default:
-        return this.storiesService.fetchBestStories();
-    }
   }
 
 }

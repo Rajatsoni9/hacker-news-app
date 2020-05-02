@@ -6,62 +6,26 @@ import { BASE_URL } from './app.constants';
   providedIn: 'root'
 })
 export class StoriesService {
-  /** Stores list of ids of top stories */
-  topStories: Array<number>;
-
-  /** Stores list of ids of new stories */
-  newStories: Array<number>;
-
-  /** Stores list of ids of best stories */
-  bestStories: Array<number>;
-
-
+  /** Stores list of ids of stories */
+  stories: Array<number>;
 
   /** @ignore */
   constructor(private http: HttpClient) { }
 
   /**
-   * This method is used to fetch top stories from hacker newsapi
+   * This method is used to fetch stories by type from hacker news api
    *
-   * @returns promise which resolves when top stories are available
+   * @param storyType story type
+   * @returns promise which resolves when stories are available
    */
-  fetchTopStories() {
+  fetchStoriesByType(storyType: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(`${BASE_URL}topstories.json`).subscribe((topStories: Array<number>) => {
-        this.topStories = topStories;
-        resolve(topStories);
+      this.http.get(`${BASE_URL}${storyType}stories.json`).subscribe((stories: Array<number>) => {
+        this.stories = stories;
+        resolve(stories);
       }, () => { reject(); });
     });
   }
-
-  /**
-   * This method is used to fetch new stories from hacker news api
-   *
-   * @returns promise which resolves when new stories are available
-   */
-  fetchNewStories() {
-    return new Promise((resolve, reject) => {
-      this.http.get(`${BASE_URL}newstories.json`).subscribe((newStories: Array<number>) => {
-        this.newStories = newStories;
-        resolve(newStories);
-      }, () => { reject(); });
-    });
-  }
-
-  /**
-   * This method is used to fetch best stories from hacker news api
-   *
-   * @returns promise which resolves when best stories are available
-   */
-  fetchBestStories() {
-    return new Promise((resolve, reject) => {
-      this.http.get(`${BASE_URL}beststories.json`).subscribe((bestStories: Array<number>) => {
-        this.bestStories = bestStories;
-        resolve(bestStories);
-      }, () => { reject(); });
-    });
-  }
-
 
   /**
    * This method is used to fetch story with story id
