@@ -15,6 +15,8 @@ export class StoryListComponent implements OnInit {
   stories: Array<{ title: string, url: string, by: string, time: number, score: number }> = [];
   /** Stores index of next story */
   nextStoryIndex = 0;
+  /** True if more stories are available */
+  moreStoriesAvailable: boolean;
 
   constructor(private storiesService: StoriesService, private router: ActivatedRoute) { }
 
@@ -35,15 +37,18 @@ export class StoryListComponent implements OnInit {
    */
   loadStories() {
     const storiesList = [];
-    for (let i = this.nextStoryIndex; i < this.nextStoryIndex + 10; i++) {
-      storiesList.push(this.storiesService.fetchStory(this.storiesService.stories[i]));
+    this.moreStoriesAvailable = this.nextStoryIndex + 10 < this.storiesService.stories.length;
+    if (this.moreStoriesAvailable) {
+      for (let i = this.nextStoryIndex; i < this.nextStoryIndex + 10; i++) {
+        storiesList.push(this.storiesService.fetchStory(this.storiesService.stories[i]));
+      }
+      forkJoin(storiesList).subscribe((moreStories) => {
+        this.stories = [...this.stories, ...moreStories];
+        this.loading = false;
+        this.nextStoryIndex = this.nextStoryIndex + 10;
+      }, () => {
+        this.loading = false;
+      });
     }
-    forkJoin(storiesList).subscribe((moreStories) => {
-      this.stories = [...this.stories, ...moreStories];
-      this.loading = false;
-      this.nextStoryIndex = this.nextStoryIndex + 10;
-    }, () => {
-      this.loading = false;
-    });
   }
 }
