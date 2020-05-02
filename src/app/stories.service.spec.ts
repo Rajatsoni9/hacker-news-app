@@ -17,30 +17,12 @@ describe('StoriesService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('#fetchTopStories should fetch topstories from hackernews api', () => {
+  it('#fetchStoriesByType should fetch stories from hackernews api', () => {
     const service: StoriesService = TestBed.get(StoriesService);
     httpClientMock.get.and.returnValue(new Observable((o) => { o.next([123]); }));
-    service.fetchTopStories().then((data) => {
+    service.fetchStoriesByType('new').then((data) => {
       expect(data).toEqual([123]);
-      expect(service.topStories).toEqual([123]);
-    });
-  });
-
-  it('#fetchNewStories should fetch topstories from hackernews api', () => {
-    const service: StoriesService = TestBed.get(StoriesService);
-    httpClientMock.get.and.returnValue(new Observable((o) => { o.next([123]); }));
-    service.fetchNewStories().then((data) => {
-      expect(data).toEqual([123]);
-      expect(service.newStories).toEqual([123]);
-    });
-  });
-
-  it('#fetchBestStories should fetch topstories from hackernews api', () => {
-    const service: StoriesService = TestBed.get(StoriesService);
-    httpClientMock.get.and.returnValue(new Observable((o) => { o.next([123]); }));
-    service.fetchBestStories().then((data) => {
-      expect(data).toEqual([123]);
-      expect(service.bestStories).toEqual([123]);
+      expect(service.stories).toEqual([123]);
     });
   });
 
