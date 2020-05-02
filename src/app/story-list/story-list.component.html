@@ -4,3 +4,6 @@
     <app-story [story]="story"></app-story>
   </ng-container>
 </div>
+<div class="load-more-container">
+  <button mat-button *ngIf="!loading" (click)="loadStories()">Load more stories</button>
+</div>
