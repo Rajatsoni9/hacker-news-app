@@ -1,4 +1,4 @@
-<mat-card (click)="openLink(story.url)" *ngIf="story.url">
+<mat-card (click)="openLink(story.url)" *ngIf="story?.url">
   <mat-card-header>
       <mat-card-title>{{ story?.title }}</mat-card-title>
       <mat-card-subtitle
