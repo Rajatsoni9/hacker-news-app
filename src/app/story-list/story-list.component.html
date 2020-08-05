@@ -3,7 +3,7 @@
   <ng-container *ngFor="let story of stories">
     <app-story [story]="story"></app-story>
   </ng-container>
-</div>
-<div class="load-more-container" *ngIf="moreStoriesAvailable">
-  <button mat-button *ngIf="!loading" (click)="loadStories()">Load more stories</button>
+  <div class="load-more-container" *ngIf="moreStoriesAvailable">
+    <button mat-button *ngIf="!loading" (click)="loadStories()">Load more stories</button>
+  </div>
 </div>

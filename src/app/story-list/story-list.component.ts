@@ -28,13 +28,11 @@ export class StoryListComponent implements OnInit {
     this.router.paramMap.subscribe((params) => {
       this.loading = true;
       const storyType: string = params.get('type');
-      this.storiesService
-        .fetchStoriesByType(storyType)
-        .then(() => {
-          this.stories = [];
-          this.nextStoryIndex = 0;
-          this.loadStories();
-        });
+      this.storiesService.fetchStoriesByType(storyType).then(() => {
+        this.stories = [];
+        this.nextStoryIndex = 0;
+        this.loadStories();
+      });
     });
   }
 
@@ -51,6 +49,7 @@ export class StoryListComponent implements OnInit {
           this.storiesService.fetchStory(this.storiesService.stories[i])
         );
       }
+      this.loading = true;
       forkJoin(storiesList).subscribe(
         (moreStories: Array<Story>) => {
           this.stories = [...this.stories, ...moreStories];
