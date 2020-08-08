@@ -13,6 +13,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { DomainPipe } from './domain.pipe';
 import { StoryComponent } from './story/story.component';
 import { StoryListComponent } from './story-list/story-list.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, DomainPipe, StoryComponent, StoryListComponent],
@@ -24,7 +26,8 @@ import { StoryListComponent } from './story-list/story-list.component';
     MatButtonModule,
     MatCardModule,
     MatProgressBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],
