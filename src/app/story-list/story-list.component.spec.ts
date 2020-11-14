@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StoryListComponent } from './story-list.component';
 import { StoryComponent } from '../story/story.component';
@@ -12,7 +12,7 @@ describe('StoryListComponent', () => {
   let component: StoryListComponent;
   let fixture: ComponentFixture<StoryListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MatProgressBarModule, MatCardModule, HttpClientModule, RouterTestingModule],
       declarations: [ StoryListComponent, StoryComponent, DomainPipe ]

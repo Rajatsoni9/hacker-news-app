@@ -34,9 +34,12 @@
             "styles": [
               {
                 "input": "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-                "inject": false
+                "inject": true
               },
-              { "input": "src/styles.scss", "inject": false }
+              {
+                "input": "src/styles.scss",
+                "inject": true
+              }
             ],
             "scripts": []
           },
@@ -51,7 +54,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -100,9 +102,12 @@
             "styles": [
               {
                 "input": "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-                "inject": false
+                "inject": true
               },
-              { "input": "src/styles.scss", "inject": false }
+              {
+                "input": "src/styles.scss",
+                "inject": true
+              }
             ],
             "scripts": [],
             "assets": [
