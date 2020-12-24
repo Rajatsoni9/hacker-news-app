@@ -30,7 +30,8 @@
               "src/apple-touch-icon.png",
               "src/assets",
               "src/robots.txt",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/_redirects"
             ],
             "styles": [
               {
@@ -118,7 +119,8 @@
               "src/apple-touch-icon.png",
               "src/assets",
               "src/robots.txt",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              "src/_redirects"
             ]
           }
         },
