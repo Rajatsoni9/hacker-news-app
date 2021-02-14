@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoriesService } from '../stories.service';
 import { forkJoin } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from '../app.interface';
 
 @Component({
@@ -21,18 +21,23 @@ export class StoryListComponent implements OnInit {
 
   constructor(
     private storiesService: StoriesService,
-    private router: ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.router.paramMap.subscribe((params) => {
+    this.route.paramMap.subscribe((params) => {
       this.loading = true;
-      const storyType: string = params.get('type');
-      this.storiesService.fetchStoriesByType(storyType).then(() => {
-        this.stories = [];
-        this.nextStoryIndex = 0;
-        this.loadStories();
-      });
+      const storyType: string = params.get("type");
+      if (!["top", "new", "best"].includes(storyType)) {
+        this.router.navigateByUrl("stories/best");
+      } else {
+        this.storiesService.fetchStoriesByType(storyType).then(() => {
+          this.stories = [];
+          this.nextStoryIndex = 0;
+          this.loadStories();
+        });
+      }
     });
   }
 

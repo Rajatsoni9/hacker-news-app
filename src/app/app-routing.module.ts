@@ -4,7 +4,8 @@ import { StoryListComponent } from './story-list/story-list.component';
 
 const routes: Routes = [
   {path: 'stories/:type', component: StoryListComponent},
-  {path: '', pathMatch: 'full', redirectTo: 'stories/best'}
+  {path: '', pathMatch: 'full', redirectTo: 'stories/best'},
+  {path:'**', redirectTo: 'stories/best'},
 ];
 
 @NgModule({
