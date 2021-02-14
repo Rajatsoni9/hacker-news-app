@@ -9,7 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DomainPipe } from './domain.pipe';
 import { StoryComponent } from './story/story.component';
 import { StoryListComponent } from './story-list/story-list.component';
@@ -26,7 +28,9 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     MatCardModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MatToolbarModule,
+    InfiniteScrollModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
