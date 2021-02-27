@@ -23,7 +23,7 @@ export class StoriesService {
       this.http.get(`${BASE_URL}${storyType}stories.json`).subscribe((stories: Array<number>) => {
         this.stories = stories;
         resolve(stories);
-      }, () => { reject(); });
+      }, (error) => { reject(error); });
     });
   }
 

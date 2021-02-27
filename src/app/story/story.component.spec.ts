@@ -38,4 +38,19 @@ describe('StoryComponent', () => {
     expect(subtitle).toContain('100 points by testuser');
     expect(url).toContain('google.com');
   });
+
+  it('#openLink should open the link in browser if url is present', () => {
+    const windowOpenSpy = spyOn(window, 'open');
+    const testUrl = 'https://abc.com';
+    component.openLink(testUrl);
+    expect(windowOpenSpy.calls.count()).toEqual(1);
+    expect(windowOpenSpy.calls.allArgs()[0][0]).toEqual(testUrl);
+  });
+
+  it('#openLink should do nothing if url is not present', () => {
+    const windowOpenSpy = spyOn(window, 'open');
+    const testUrl = '';
+    component.openLink(testUrl);
+    expect(windowOpenSpy.calls.count()).toEqual(0);
+  });
 });
