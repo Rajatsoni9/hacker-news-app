@@ -4,6 +4,7 @@
   infinite-scroll
   [infiniteScrollDistance]="1"
   [infiniteScrollThrottle]="0"
+  [infiniteScrollDisabled]="loading"
   (scrolled)="loadStories()"
 >
   <ng-container *ngFor="let story of stories">
