@@ -32,16 +32,7 @@
               "src/manifest.webmanifest",
               "src/_redirects"
             ],
-            "styles": [
-              {
-                "input": "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-                "inject": true
-              },
-              {
-                "input": "src/styles.scss",
-                "inject": true
-              }
-            ],
+            "styles": [],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -106,16 +97,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              {
-                "input": "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-                "inject": true
-              },
-              {
-                "input": "src/styles.scss",
-                "inject": true
-              }
-            ],
+            "styles": [],
             "scripts": [],
             "assets": [
               "src/favicon.ico",
