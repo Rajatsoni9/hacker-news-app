@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StoriesService } from '../stories.service';
-import { forkJoin } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from '../app.interface';
 
@@ -23,14 +22,14 @@ export class StoriesComponent implements OnInit {
     private storiesService: StoriesService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       this.loading = true;
-      const storyType: string = params.get("type");
-      if (!["top", "new", "best"].includes(storyType)) {
-        this.router.navigateByUrl("stories/best");
+      const storyType: string = params.get('type');
+      if (!['top', 'new', 'best'].includes(storyType)) {
+        this.router.navigateByUrl('stories/best');
       } else {
         this.storiesService.fetchStoriesByType(storyType).then(() => {
           this.stories = [];
@@ -54,17 +53,9 @@ export class StoriesComponent implements OnInit {
           this.storiesService.fetchStory(this.storiesService.stories[i])
         );
       }
-      this.loading = true;
-      forkJoin(storiesList).subscribe(
-        (moreStories: Array<Story>) => {
-          this.stories = [...this.stories, ...moreStories];
-          this.loading = false;
-          this.nextStoryIndex = this.nextStoryIndex + 10;
-        },
-        () => {
-          this.loading = false;
-        }
-      );
+      this.stories = [...this.stories, ...storiesList];
+      this.loading = false;
+      this.nextStoryIndex = this.nextStoryIndex + 10;
     }
   }
 }
