@@ -8,7 +8,7 @@
   (scrolled)="loadStories()"
 >
   <ng-container *ngFor="let story of stories">
-    <app-story [story]="story"></app-story>
+    <app-story [story]="story | async"></app-story>
   </ng-container>
   <mat-spinner diameter="40" *ngIf="loading"></mat-spinner>
 </div>
