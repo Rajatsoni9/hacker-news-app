@@ -5,11 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from '../app.interface';
 
 @Component({
-  selector: 'app-story-list',
-  templateUrl: './story-list.component.html',
-  styleUrls: ['./story-list.component.scss'],
+  selector: 'app-stories',
+  templateUrl: './stories.component.html',
+  styleUrls: ['./stories.component.scss'],
 })
-export class StoryListComponent implements OnInit {
+export class StoriesComponent implements OnInit {
   /** True if stories are loading */
   loading: boolean;
   /** Stores list of stories */

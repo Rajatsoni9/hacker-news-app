@@ -9,25 +9,25 @@ import { of } from 'rxjs';
 
 import { DomainPipe } from '../domain.pipe';
 import { StoriesService } from '../stories.service';
-import { StoryComponent } from '../story/story.component';
-import { StoryListComponent } from './story-list.component';
+import { StoryComponent } from './story/story.component';
+import { StoriesComponent } from './stories.component';
 
-describe('StoryListComponent', () => {
-  let component: StoryListComponent;
-  let fixture: ComponentFixture<StoryListComponent>;
+describe('StoriesComponent', () => {
+  let component: StoriesComponent;
+  let fixture: ComponentFixture<StoriesComponent>;
   let storiesService: StoriesService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [MatProgressBarModule, MatCardModule, HttpClientModule, RouterTestingModule, InfiniteScrollModule, MatProgressSpinnerModule],
-      declarations: [StoryListComponent, StoryComponent, DomainPipe],
+      declarations: [StoriesComponent, StoryComponent, DomainPipe],
       providers: [{ provide: StoriesService, useValue: { stories: [1, 2, 3, 4, 5, 6, 7, 8, , 9, 10, 11, 12], fetchStory: () => of(1) } }]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StoryListComponent);
+    fixture = TestBed.createComponent(StoriesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     storiesService = TestBed.inject(StoriesService);

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StoryComponent } from './story.component';
-import { DomainPipe } from '../domain.pipe';
+import { DomainPipe } from '../../domain.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 
