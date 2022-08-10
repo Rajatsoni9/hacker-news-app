@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoriesService } from '../stories.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Story } from '../app.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-stories',
@@ -12,7 +13,7 @@ export class StoriesComponent implements OnInit {
   /** True if stories are loading */
   loading: boolean;
   /** Stores list of stories */
-  stories: Array<Story> = [];
+  stories: Array<Observable<Story>> = [];
   /** Stores index of next story */
   nextStoryIndex = 0;
   /** True if more stories are available */
@@ -32,7 +33,7 @@ export class StoriesComponent implements OnInit {
         this.router.navigateByUrl('stories/best');
       } else {
         this.storiesService.fetchStoriesByType(storyType).subscribe(() => {
-          this.stories = [];
+          this.stories = this.storiesService.stories;
           this.nextStoryIndex = 0;
           this.loadStories();
         });
@@ -44,18 +45,11 @@ export class StoriesComponent implements OnInit {
    * This method is used to load more stories (10 at a time)
    */
   loadStories() {
-    const storiesList = [];
     this.moreStoriesAvailable =
       this.nextStoryIndex + 10 < this.storiesService.stories.length;
     if (this.moreStoriesAvailable) {
-      for (let i = this.nextStoryIndex; i < this.nextStoryIndex + 10; i++) {
-        storiesList.push(
-          this.storiesService.fetchStory(this.storiesService.stories[i])
-        );
-      }
-      this.stories = [...this.stories, ...storiesList];
-      this.loading = false;
       this.nextStoryIndex = this.nextStoryIndex + 10;
     }
+    this.loading = false;
   }
 }
