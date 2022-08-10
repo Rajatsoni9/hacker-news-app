@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from "@angular/core";
 import { MatCardModule } from "@angular/material/card";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DomainPipe } from '../domain.pipe';
 import { StoriesRoutingModule } from "./stories-routing.module";
@@ -16,7 +15,6 @@ import { StoryComponent } from "./story/story.component";
         InfiniteScrollModule,
         MatCardModule,
         MatProgressBarModule,
-        MatProgressSpinnerModule,
         StoriesRoutingModule,
     ],
 })

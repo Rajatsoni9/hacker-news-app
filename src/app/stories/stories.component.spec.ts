@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterTestingModule } from '@angular/router/testing';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { of } from 'rxjs';
@@ -19,7 +18,7 @@ describe('StoriesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MatProgressBarModule, MatCardModule, HttpClientModule, RouterTestingModule, InfiniteScrollModule, MatProgressSpinnerModule],
+      imports: [MatProgressBarModule, MatCardModule, HttpClientModule, RouterTestingModule, InfiniteScrollModule],
       declarations: [StoriesComponent, StoryComponent, DomainPipe],
       providers: [{ provide: StoriesService, useValue: { stories: [1, 2, 3, 4, 5, 6, 7, 8, , 9, 10, 11, 12], fetchStory: () => of(1) } }]
     })
