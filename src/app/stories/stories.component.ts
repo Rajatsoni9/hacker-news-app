@@ -32,6 +32,7 @@ export class StoriesComponent implements OnInit {
       if (!['top', 'new', 'best'].includes(storyType)) {
         this.router.navigateByUrl('stories/best');
       } else {
+        window.scrollTo({ top: 0 });
         this.storiesService.fetchStoriesByType(storyType).subscribe(() => {
           this.stories = this.storiesService.stories;
           this.nextStoryIndex = 0;
