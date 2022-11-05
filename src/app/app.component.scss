@@ -1,26 +1,26 @@
 mat-toolbar {
-    position: fixed;
-    z-index: 99999;
-    .title {
-        display: inline-block;
-        padding: 0 1rem;
+  position: fixed;
+  z-index: 99999;
+  .title {
+    display: inline-block;
+    padding: 0 1rem;
+  }
+  a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.active {
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 0;
     }
-    a {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        &.active {
-            background: rgba(0, 0, 0, 0.18);
-            border-radius: 0;
-        }
-    }
+  }
 }
 
 @media only screen and (max-width: 320px) {
-    mat-toolbar{
-        .title {
-            padding: 0;
-        }
+  mat-toolbar {
+    .title {
+      padding: 0;
     }
+  }
 }

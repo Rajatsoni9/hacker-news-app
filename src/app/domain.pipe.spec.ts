@@ -1,15 +1,15 @@
-import { DomainPipe } from './domain.pipe';
+import { DomainPipe } from "./domain.pipe";
 
-describe('DomainPipe', () => {
-  it('create an instance', () => {
+describe("DomainPipe", () => {
+  it("create an instance", () => {
     const pipe = new DomainPipe();
     expect(pipe).toBeTruthy();
   });
 
-  it('returns hostname when url is passed', () => {
+  it("returns hostname when url is passed", () => {
     const pipe = new DomainPipe();
-    expect(pipe.transform('https://www.google.com')).toEqual('google.com');
-    expect(pipe.transform('https://github.com')).toEqual('github.com');
-    expect(pipe.transform('')).toEqual('');
+    expect(pipe.transform("https://www.google.com")).toEqual("google.com");
+    expect(pipe.transform("https://github.com")).toEqual("github.com");
+    expect(pipe.transform("")).toEqual("");
   });
 });
