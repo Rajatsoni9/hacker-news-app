@@ -1,13 +1,19 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { StoriesService } from "../stories.service";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Story } from "../app.interface";
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { Observable } from "rxjs";
+import { Story } from "../app.interface";
+import { StoriesService } from "../stories.service";
+import { StoryComponent } from "./story/story.component";
 
 @Component({
   selector: "app-stories",
   templateUrl: "./stories.component.html",
   styleUrls: ["./stories.component.scss"],
+  standalone: true,
+  imports: [CommonModule, InfiniteScrollModule, MatProgressBarModule, StoryComponent],
 })
 export class StoriesComponent implements OnInit {
   /** True if stories are loading */

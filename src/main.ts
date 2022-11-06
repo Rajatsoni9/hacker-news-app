@@ -1,13 +1,34 @@
-import { enableProdMode } from "@angular/core";
-import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
-
-import { AppModule } from "./app/app.module";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { enableProdMode, importProvidersFrom } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+import { RouterModule, Routes } from "@angular/router";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { AppComponent } from "./app/app.component";
+import { CachingInterceptor } from "./app/http-interceptors/caching-interceptor";
 import { environment } from "./environments/environment";
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+const routes: Routes = [
+  {
+    path: "stories",
+    loadChildren: () => import("./app/stories/stories.routes").then(m => m.routes),
+  },
+  { path: "", pathMatch: "full", redirectTo: "stories/best" },
+  { path: "**", redirectTo: "stories/best" },
+];
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(RouterModule.forRoot(routes)),
+    importProvidersFrom(HttpClientModule),
+    importProvidersFrom(
+      ServiceWorkerModule.register("ngsw-worker.js", {
+        enabled: environment.production,
+      })
+    ),
+    { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true },
+  ],
+}).catch(err => console.error(err));
