@@ -1,24 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { StoryComponent } from "./story.component";
-import { DomainPipe } from "../../domain.pipe";
-import { MatCardModule } from "@angular/material/card";
-import { MatChipsModule } from "@angular/material/chips";
 
 describe("StoryComponent", () => {
   let component: StoryComponent;
   let fixture: ComponentFixture<StoryComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [MatCardModule, MatChipsModule],
-      declarations: [StoryComponent, DomainPipe],
-    }).compileComponents();
+    TestBed.configureTestingModule({}).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StoryComponent);
     component = fixture.componentInstance;
+    component.story = { title: "test", url: "https://www.google.com", score: 100, by: "testuser", time: 123 };
     fixture.detectChanges();
   });
 
@@ -27,8 +22,6 @@ describe("StoryComponent", () => {
   });
 
   it("should display story details correctly", () => {
-    component.story = { title: "test", url: "https://www.google.com", score: 100, by: "testuser", time: 123 };
-    fixture.detectChanges();
     const nativeElement: HTMLElement = fixture.nativeElement;
     const title = nativeElement.querySelector("mat-card-title").textContent;
     const subtitle = nativeElement.querySelector("mat-card-subtitle").textContent;

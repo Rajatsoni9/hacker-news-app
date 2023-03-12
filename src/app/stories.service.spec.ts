@@ -17,45 +17,44 @@ describe("StoriesService", () => {
     expect(service).toBeTruthy();
   });
 
-  it("#fetchStoriesByType should fetch stories from hackernews api", done => {
+  it("#fetchStoriesByType should fetch stories from hackernews api", () => {
     const service: StoriesService = TestBed.inject(StoriesService);
     httpClientMock.get.and.returnValue(
       new Observable(o => {
         o.next([123]);
       })
     );
-    service
-      .fetchStoriesByType("new")
-      .then(data => {
-        expect(data).toEqual([123]);
-        expect(service.stories).toEqual([123]);
-        done();
-      })
-      .catch(() => {});
+    service.fetchStoriesByType("new").subscribe(data => {
+      expect(data).toEqual([123]);
+      expect(service.stories.length).toEqual(1);
+    });
   });
 
-  it("#fetchStoriesByType should handle error when fetch stories from hackernews api fails", done => {
+  it("#fetchStoriesByType should handle error when fetch stories from hackernews api fails", () => {
     const service: StoriesService = TestBed.inject(StoriesService);
     httpClientMock.get.and.returnValue(
       new Observable(o => {
         o.error("error");
       })
     );
-    service.fetchStoriesByType("new").catch(error => {
-      expect(error).toEqual("error");
-      done();
-    });
+    service.fetchStoriesByType("new").subscribe(
+      success => {},
+      error => {
+        expect(error).toEqual("error");
+      }
+    );
   });
 
   it("#fetchStory should fetch topstories from hackernews api", () => {
     const service: StoriesService = TestBed.inject(StoriesService);
     httpClientMock.get.and.returnValue(
       new Observable(o => {
-        o.next("test");
+        o.next({ title: "test", url: "test", by: "test", time: 123, score: 123 });
       })
     );
     service.fetchStory(123).subscribe(data => {
-      expect(data).toEqual("test");
+      expect(data.title).toEqual("test");
+      expect(data.time).toEqual(123);
     });
   });
 });
