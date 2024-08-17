@@ -1,6 +1,6 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { RouterTestingModule } from "@angular/router/testing";
 import { of } from "rxjs";
 
@@ -19,10 +19,7 @@ describe("StoriesComponent", () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientModule,
-        RouterTestingModule.withRoutes([{ path: "stories/:type", component: StoriesComponent }]),
-      ],
+      imports: [RouterModule.forRoot([{ path: "stories/:type", component: StoriesComponent }])],
       providers: [
         {
           provide: StoriesService,
@@ -34,6 +31,7 @@ describe("StoriesComponent", () => {
         },
         { provide: Router, useValue: routerSpy },
         { provide: ActivatedRoute, useValue: activatedRouteSpy },
+        provideHttpClient(withInterceptorsFromDi()),
       ],
     }).compileComponents();
   }));
