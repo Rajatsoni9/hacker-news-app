@@ -1,4 +1,3 @@
-import { HttpClientModule } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";

@@ -1,11 +1,11 @@
-<mat-card *ngIf="!story" class="loading-skeleton">
+<mat-card appearance="outlined" *ngIf="!story" class="loading-skeleton">
   <mat-card-header>
     <mat-card-title></mat-card-title>
     <mat-card-subtitle></mat-card-subtitle>
     <mat-card-subtitle></mat-card-subtitle>
   </mat-card-header>
 </mat-card>
-<mat-card (click)="openLink(story.url)" *ngIf="story?.url">
+<mat-card appearance="outlined" (click)="openLink(story.url)" *ngIf="story?.url">
   <mat-card-header>
     <mat-card-title>{{ story?.title }}</mat-card-title>
     <mat-card-subtitle
