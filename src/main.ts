@@ -1,4 +1,4 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { enableProdMode, importProvidersFrom } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
@@ -23,12 +23,12 @@ const routes: Routes = [
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(RouterModule.forRoot(routes)),
-    importProvidersFrom(HttpClientModule),
     importProvidersFrom(
       ServiceWorkerModule.register("ngsw-worker.js", {
         enabled: environment.production,
       })
     ),
+    provideHttpClient(withInterceptorsFromDi()),
     { provide: HTTP_INTERCEPTORS, useClass: CachingInterceptor, multi: true },
   ],
 }).catch(err => console.error(err));
