@@ -4,6 +4,10 @@ mat-card {
   cursor: pointer;
   box-sizing: border-box;
   min-height: 120px;
+  .mat-mdc-card-title,
+  .mat-mdc-card-subtitle {
+    margin-bottom: 0.5rem;
+  }
   &.loading-skeleton {
     .mat-mdc-card-header {
       flex-direction: column;
